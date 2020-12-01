@@ -1,158 +1,3 @@
-/**
- * JSON-RPC Client Exception class
- *
- * @param String code
- * @param String message
- */
-var JSONRpcClientException = function (code, message) {
-	this.code = code;
-	this.message = message;
-};
-JSONRpcClientException.prototype = jQuery.extend(
-	JSONRpcClientException.prototype,
-	{
-		/**
-		 * Magic method. COnvert object to string.
-		 *
-		 * @return String
-		 */
-		toString: function () {
-			return '[' + this.code + '] ' + this.message;
-		},
-	}
-);
-
-/**
- * JSON-RPC Client
- *
- * @param Object options
- */
-var JSONRpcClient = function (options) {
-	this.setOptions(options);
-	this.init();
-};
-JSONRpcClient.prototype = jQuery.extend(JSONRpcClient.prototype, {
-	/**
-	 * Default options
-	 */
-	options: {
-		onerror: function () {},
-		onsuccess: function () {},
-		url: '',
-		headers: {},
-	},
-	current: 1,
-	onerror: null,
-	onsuccess: null,
-	onstart: null,
-
-	/**
-	 * Init client
-	 */
-	init: function () {
-		this.onerror = this.getParam('onerror');
-		this.onsuccess = this.getParam('onsuccess');
-
-		this.initMethods();
-	},
-
-	/**
-	 * Init API methiods by url
-	 */
-	initMethods: function () {
-		var instance = this;
-		// get all methods
-		jQuery.ajax(this.getParam('url'), {
-			async: false,
-			success: function (data) {
-				if (data.methods) {
-					// create method
-					jQuery.each(data.methods, function (methodName, methodParams) {
-						var method = function () {
-							var params = new Array();
-							for (var i = 0; i < arguments.length; i++) {
-								params.push(arguments[i]);
-							}
-							var id = instance.current++;
-							var callback = params[params.length - 1];
-							var request = {
-								jsonrpc: '2.0',
-								method: methodName,
-								params: params,
-								id: id,
-							};
-
-							var async = false;
-							if (jQuery.type(callback) == 'function') {
-								async = true;
-								params.pop();
-							}
-
-							var res = null;
-							// API request
-							jQuery.ajax(instance.getParam('url'), {
-								contentType: 'application/json',
-								type: methodParams.transport,
-								processData: false,
-								dataType: 'json',
-								cache: false,
-								data: JSON.stringify(request),
-								headers: instance.getParam('headers'),
-								async: async,
-								success: function (result) {
-									if (jQuery.type(result.error) == 'object') {
-										res = new JSONRpcClientException(
-											result.error.code,
-											result.error.message
-										);
-										instance.onerror(res);
-									} else {
-										res = result.result;
-										if (jQuery.type(callback) == 'function') {
-											callback(res);
-										}
-									}
-									instance.onsuccess(res, id, methodName);
-								},
-							});
-							if (!async) {
-								return res;
-							}
-						};
-
-						instance[methodName] = method;
-					});
-				} else {
-					throw Exception('Methods could not be found');
-				}
-			},
-		});
-	},
-
-	/**
-	 * Set client options
-	 *
-	 * @param Object options
-	 */
-	setOptions: function (options) {
-		this.options = jQuery.extend({}, this.options, options);
-	},
-
-	/**
-	 * Get client param, if param is not available in this.options return defaultValue
-	 *
-	 * @param String key
-	 * @param mixed defaultValue
-	 * @return mixed
-	 */
-	getParam: function (key, defaultValue) {
-		if (jQuery.type(this.options[key]) != 'undefined') {
-			return this.options[key];
-		}
-		return defaultValue;
-	},
-});
-
 jQuery(document).ready(function () {
 	Date.prototype.format = function () {
 		return (
@@ -188,7 +33,7 @@ jQuery(document).ready(function () {
 		units: {},
 		attachedUnits: [],
 
-		eventId: null,
+		eventId: 1,
 		unitId: null,
 		qty: 1,
 		selectedUnitId: null,
@@ -234,12 +79,6 @@ jQuery(document).ready(function () {
 					instance.error(error);
 				},
 			});
-			this.groupBookingsAllowed = this.client.isPluginActivated(
-				'group_booking'
-			);
-			this.multipleBookingsAllowed = this.client.isPluginActivated(
-				'multiple_booking'
-			);
 		},
 
 		initElements: function () {
@@ -256,6 +95,7 @@ jQuery(document).ready(function () {
 					}
 				},
 			});
+
 			this.client.getEventList(function (events) {
 				instance.events = events;
 				for (var id in events) {
@@ -272,6 +112,7 @@ jQuery(document).ready(function () {
 					}
 				}
 			});
+
 			this.client.getAnyUnitData(function (data) {
 				instance.anyUnitData = data;
 				instance.client.getUnitList(function (units) {
@@ -284,10 +125,6 @@ jQuery(document).ready(function () {
 					jQuery('#date').datepicker('update', date);
 				});
 			});
-			if (!this.multipleBookingsAllowed) {
-				jQuery('#add_booking').hide();
-			}
-			jQuery('#confirm_batch').hide();
 		},
 
 		initEvents: function () {
@@ -313,21 +150,25 @@ jQuery(document).ready(function () {
 			jQuery('.time-handler').change(function () {
 				instance.loadStartTimeMatrix();
 			});
-			jQuery(document).on('click', '.time-item', function () {
+
+			jQuery(document).on('click', '.time-item', () => {
 				jQuery('.time-item.active').removeClass('active');
 				jQuery(this).addClass('active');
 				instance.setTime(jQuery(this).data('time'));
+
 				if (instance.unitId == -1) {
 					var unitArr = instance.client.getAvailableUnits(
 						instance.eventId,
 						instance.date + ' ' + instance.time,
 						instance.qty
 					);
+
 					if (unitArr.length) {
 						instance.selectedUnitId = unitArr[0];
 					}
 				}
 			});
+
 			jQuery('#book').click(function () {
 				if (instance.selectedUnitId) {
 					jQuery('#unit_id').val(instance.selectedUnitId);
@@ -337,25 +178,9 @@ jQuery(document).ready(function () {
 			jQuery('#confirm').click(function () {
 				instance.bookAppointment();
 			});
-			jQuery('#confirm_batch').click(function () {
-				instance.confirmBatch();
-			});
-			jQuery('#add_booking').click(function () {
-				instance.addAppointment(true);
-			});
 			jQuery('#cancel').click(function () {
 				instance.cancel();
 			});
-		},
-
-		setQty: function (qty) {
-			this.qty = qty;
-
-			if (qty > 1) {
-				jQuery('#add_booking').hide();
-			} else {
-				jQuery('#add_booking').show();
-			}
 		},
 
 		setUnitList: function (units) {
@@ -412,21 +237,6 @@ jQuery(document).ready(function () {
 			} else {
 				jQuery('#qty-element').hide();
 			}
-
-			this.loadAdditionalFields(id);
-		},
-
-		setMaxQty: function (max) {
-			jQuery('#qty').empty();
-			this.qty = 1;
-			for (var i = 1; i <= max; i++) {
-				jQuery('#qty').append('<option value="' + i + '">' + i + '</option>');
-			}
-			if (max > 1) {
-				jQuery('#qty-element').show();
-			} else {
-				jQuery('#qty-element').hide();
-			}
 		},
 
 		setUnitId: function (id) {
@@ -472,110 +282,6 @@ jQuery(document).ready(function () {
 			);
 		},
 
-		loadAdditionalFields: function (eventId) {
-			var instance = this;
-			this.client.getAdditionalFields(eventId, function (data) {
-				instance.clearAdditionalFields();
-				instance.additionalFields = data;
-				for (var i = 0; i < data.length; i++) {
-					instance.addAdditionalField(data[i]);
-				}
-			});
-		},
-
-		clearAdditionalFields: function () {
-			jQuery('#additional-fields').empty();
-			this.additionalFields = [];
-		},
-
-		addAdditionalField: function (field) {
-			var container = jQuery('<div class="form-group"></div>');
-			var title = jQuery(
-				'<div class="col-sm-2 control-label">' + field.title + '</div>'
-			);
-
-			container.append(title);
-
-			var fieldContainer = jQuery('<div class="col-sm-10"></div>');
-
-			container.append(fieldContainer);
-
-			var fieldNode = null;
-			switch (field.type) {
-				case 'checkbox':
-					fieldNode = jQuery(
-						'<input type="checkbox" name="' +
-							field.name +
-							'" id="' +
-							field.name +
-							'" value="1" />'
-					);
-					if (field['default']) {
-						fieldNode.attr('checked', true);
-					}
-					break;
-				case 'select':
-					fieldNode = jQuery(
-						'<select name="' +
-							field.name +
-							'" id="' +
-							field.name +
-							'"></select>'
-					);
-					var values = field.values.split(',');
-					for (var k = 0; k < values.length; k++) {
-						fieldNode.append(
-							jQuery(
-								'<option value="' +
-									values[k].trim() +
-									'">' +
-									values[k].trim() +
-									'</option>'
-							)
-						);
-					}
-					if (field['default']) {
-						fieldNode.val(field['default']);
-					}
-					break;
-				case 'textarea':
-					fieldNode = jQuery(
-						'<textarea name="' +
-							field.name +
-							'" id="' +
-							field.name +
-							'"></textarea>'
-					);
-					if (field['default']) {
-						fieldNode.val(field['default']);
-					}
-					break;
-				default:
-					fieldNode = jQuery(
-						'<input type="text" name="' +
-							field.name +
-							'" id="' +
-							field.name +
-							'" />'
-					);
-					if (field['default']) {
-						fieldNode.val(field['default']);
-					}
-					break;
-			}
-
-			if (fieldNode) {
-				if (field.type == 'checkbox') {
-					fieldNode.addClass('checkbox');
-				} else {
-					fieldNode.addClass('form-control');
-				}
-
-				fieldContainer.append(fieldNode);
-				jQuery('#additional-fields').append(container);
-			}
-		},
-
 		setDate: function (date) {
 			this.date = date;
 
@@ -587,17 +293,34 @@ jQuery(document).ready(function () {
 			this.time = time;
 		},
 
-		showClientInfo: function () {
-			var instance = this;
-			var unitId = this.unitId;
-			if (unitId == -1) {
-				unitId = null;
-			}
+		calculateEventEndTime: function () {
+			let eventEndTime = undefined;
+
 			this.client.calculateEndTime(
 				this.date + ' ' + this.time,
 				this.eventId,
 				this.unitId,
 				function (res) {
+					console.log(res);
+
+					eventEndTime = res;
+				}
+			);
+
+			return eventEndTime;
+		},
+
+		showClientInfo: function () {
+			var instance = this;
+			let unitId = this.unitId == -1 ? null : this.unitId;
+
+			this.client.calculateEndTime(
+				this.date + ' ' + this.time,
+				this.eventId,
+				this.unitId,
+				function (res) {
+					console.log(res);
+
 					jQuery('.has-error').removeClass('has-error');
 					if (!res) {
 						jQuery('#time').parent().addClass('has-error');
@@ -618,9 +341,6 @@ jQuery(document).ready(function () {
 						jQuery('#schedule').hide();
 						jQuery('#client').show();
 
-						jQuery('#event_name').text(
-							instance.events[jQuery('#event_id').val()].name
-						);
 						jQuery('#unit_name').text(
 							instance.units[jQuery('#unit_id').val()].name
 						);
@@ -650,7 +370,6 @@ jQuery(document).ready(function () {
 						email: jQuery('#email').val(),
 						phone: jQuery('#phone').val(),
 					},
-					this.getAdditionalFieldsValues(),
 					this.qty
 				);
 
@@ -659,80 +378,6 @@ jQuery(document).ready(function () {
 					location.href = '';
 				}
 			}
-		},
-
-		addAppointment: function (toFirstStep) {
-			if (this.validateClientData()) {
-				if (!this.batchId) {
-					this.batchId = this.client.createBatch();
-				}
-
-				var unitId = this.unitId;
-				if (unitId == -1) {
-					unitId = this.selectedUnitId;
-				}
-				if (!this.qty || this.qty < 1) {
-					this.qty = 1;
-				}
-				var res = this.client.book(
-					this.eventId,
-					unitId,
-					this.date,
-					this.time,
-					{
-						name: jQuery('#name').val(),
-						email: jQuery('#email').val(),
-						phone: jQuery('#phone').val(),
-					},
-					this.getAdditionalFieldsValues(),
-					1,
-					this.batchId
-				);
-
-				jQuery('#confirm').hide();
-				jQuery('#confirm_batch').show();
-
-				if (toFirstStep) {
-					jQuery('#schedule').show();
-					jQuery('#client').hide();
-				}
-
-				return res;
-			}
-		},
-
-		confirmBatch: function () {
-			var res = this.addAppointment();
-
-			alert('Your bookings were successfully booked.');
-
-			location.href =
-				'confirm_batch.php?batch_id=' +
-				this.batchId +
-				'&batch_type=' +
-				res.batch_type +
-				'&batch_hash=' +
-				res.batch_hash;
-		},
-
-		getAdditionalFieldsValues: function () {
-			var result = {};
-			for (var i = 0; i < this.additionalFields.length; i++) {
-				var field = this.additionalFields[i];
-				value = null;
-				if (field.type == 'checkbox') {
-					if (jQuery('#' + field.name).is(':checked')) {
-						value = 1;
-					} else {
-						value = 0;
-					}
-				} else {
-					value = jQuery('#' + field.name).val();
-				}
-				result[field.name] = value;
-			}
-
-			return result;
 		},
 
 		validateClientData: function () {
@@ -762,10 +407,9 @@ jQuery(document).ready(function () {
 			if (this.unitId && this.eventId && this.date) {
 				jQuery('#time').empty();
 				this.setTime(null);
-				var unitId = this.unitId;
-				if (unitId == -1) {
-					unitId = null;
-				}
+
+				let unitId = this.unitd == -1 ? null : this.unitId;
+
 				this.client.getStartTimeMatrix(
 					this.date,
 					this.date,
@@ -775,18 +419,15 @@ jQuery(document).ready(function () {
 					function (data) {
 						var times = data[instance.date];
 						if (times) {
-							jQuery('#busy').hide();
 							for (var i = 0; i < times.length; i++) {
-								jQuery('#time').append(
-									'<div class="time-item col-sm-6" data-time="' +
-										times[i] +
-										'">' +
-										times[i] +
-										'</div>'
-								);
+								const startTime = times[i];
+								const endTime = this.calculateEventEndTime;
+
+								console.log(endTime);
+
+								const newDiv = `<div class="time-item" data-time="${startTime}">${startTime}</div>`;
+								jQuery('#time').append(newDiv);
 							}
-						} else {
-							jQuery('#busy').show();
 						}
 					}
 				);

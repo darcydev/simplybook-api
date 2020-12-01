@@ -1,0 +1,147 @@
+:root {
+	--primary-green: #36c0c8;
+	--primary-blue: #2a2d4e;
+}
+
+#date {
+	.old.day,
+	.new.day {
+		visibility: hidden;
+	}
+
+	.datepicker.datepicker-inline {
+		background: #ffffff;
+		border: 1px solid #cccccc;
+	}
+}
+
+#time {
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+
+	.time-item {
+		margin-bottom: 3px;
+		margin-top: 3px;
+
+		&.active {
+			font-weight: bold;
+		}
+
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+}
+
+#client {
+	display: none;
+}
+
+.select-facilitator-wrp {
+	display: flex;
+	align-items: center;
+	margin: 0 0 50px 0;
+
+	label {
+		text-transform: uppercase;
+		color: var(--primary-green);
+		margin-right: 40px;
+		font-size: 16px;
+	}
+
+	select {
+		color: #fff;
+		background: var(--primary-green);
+		border-radius: 5px;
+		padding: 5px 10px;
+		width: 300px;
+		max-width: 80%;
+		font-size: 16px;
+	}
+}
+
+.select-datetime-wrp {
+	display: flex;
+}
+
+.select-day-wrp {
+	margin-right: 50px;
+	width: 50%;
+
+	.form-heading {
+		text-transform: uppercase;
+		color: var(--primary-green);
+		margin-right: 40px;
+		font-size: 20px;
+	}
+}
+
+/* CALENDAR */
+
+.select-day-wrp {
+	.datepicker {
+		width: 100%;
+		border: none !important;
+
+		table {
+			width: 100%;
+
+			thead {
+				tr {
+					th.datepicker-switch {
+						text-align: right;
+						text-transform: uppercase;
+						color: var(--primary-green);
+						font-size: 22px;
+					}
+
+					th.dow {
+						color: #fff;
+						background: var(--primary-green);
+						font-weight: 400;
+						border-radius: 0px;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					td {
+						border-radius: 0px !important;
+						border: 1px solid #000;
+					}
+
+					td.day {
+						background: var(--primary-green);
+					}
+					td.disabled,
+					td.old {
+						background: #fff;
+					}
+					td.day.active {
+						color: var(--primary-blue) !important;
+						border: 1px solid #000;
+					}
+				}
+			}
+		}
+	}
+}
+
+.select-time-wrp {
+	width: 50%;
+
+	.form-heading {
+		border-bottom: 2px solid var(--primary-green);
+		text-transform: uppercase;
+		color: var(--primary-green);
+		font-size: 20px;
+	}
+	#time {
+		border: none;
+	}
+}
