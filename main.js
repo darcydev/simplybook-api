@@ -293,23 +293,6 @@ jQuery(document).ready(function () {
 			this.time = time;
 		},
 
-		calculateEventEndTime: function () {
-			let eventEndTime = undefined;
-
-			this.client.calculateEndTime(
-				this.date + ' ' + this.time,
-				this.eventId,
-				this.unitId,
-				function (res) {
-					console.log(res);
-
-					eventEndTime = res;
-				}
-			);
-
-			return eventEndTime;
-		},
-
 		showClientInfo: function () {
 			var instance = this;
 			let unitId = this.unitId == -1 ? null : this.unitId;
@@ -408,12 +391,16 @@ jQuery(document).ready(function () {
 				jQuery('#time').empty();
 				this.setTime(null);
 
+				let date = this.date;
 				let unitId = this.unitd == -1 ? null : this.unitId;
+				let eventId = this.eventId;
+
+				// console.log(this.client);
 
 				this.client.getStartTimeMatrix(
-					this.date,
-					this.date,
-					this.eventId,
+					date,
+					date,
+					eventId,
 					unitId,
 					this.qty,
 					function (data) {
@@ -421,11 +408,19 @@ jQuery(document).ready(function () {
 						if (times) {
 							for (var i = 0; i < times.length; i++) {
 								const startTime = times[i];
-								const endTime = this.calculateEventEndTime;
+								const endTime = instance.client.calculateEndTime(
+									`${date} ${startTime}`,
+									eventId,
+									unitId
+								);
 
-								console.log(endTime);
+								const formattedStartTime = dayjs(
+									`1970-01-01 ${startTime}`
+								).format('h:mm a');
+								const formattedEndTime = dayjs(endTime).format('h:mm a');
 
-								const newDiv = `<div class="time-item" data-time="${startTime}">${startTime}</div>`;
+								const newDiv = `<div class="time-item" data-time="${startTime}">${formattedStartTime} - ${formattedEndTime}</div>`;
+
 								jQuery('#time').append(newDiv);
 							}
 						}
