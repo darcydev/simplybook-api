@@ -89,6 +89,9 @@ jQuery(document).ready(function () {
 				startDate: new Date(),
 				todayHighlight: true,
 				format: 'yyyy-mm-dd',
+				maxViewMode: 0,
+				changeYear: false,
+				changeMonth: false,
 				beforeShowDay: function (date) {
 					if (instance.weekends[date.format()] == true) {
 						return { enabled: false };
@@ -416,4 +419,10 @@ $('.time-item').click(() => {
 
 	$('.time-item').removeClass('active');
 	$(this).toggleClass('active');
+});
+
+jQuery(document).ready(function () {
+	$('th.prev').empty();
+	$('th.next').empty();
+	$('.datepicker-switch').addClass('datepicker-month');
 });

@@ -53,27 +53,39 @@ $dark-grey: #808a9c;
 
 						thead {
 							tr {
-								th.datepicker-switch {
+								th.datepicker-month {
 									text-transform: uppercase;
 									color: $primary-aqua;
 									font-size: 18px;
 									font-weight: 300;
+									cursor: arrow;
 
 									&:hover {
 										background: inherit;
 									}
 								}
 
+								th.prev,
+								th.next {
+									background-color: $primary-aqua;
+									background-repeat: no-repeat;
+									background-size: 10px;
+									background-position: center center;
+								}
+
+								th.prev {
+									background-image: url('/images/left-arrow.png');
+								}
+
+								th.next {
+									background-image: url('/images/right-arrow.png');
+								}
+
 								th.dow {
 									color: #fff;
 									background: $primary-aqua;
-									font-weight: 400;
+									font-weight: 300;
 									border-radius: 0px;
-								}
-
-								th.prev,
-								th.next {
-									background: $primary-aqua;
 								}
 							}
 						}
@@ -89,6 +101,7 @@ $dark-grey: #808a9c;
 									color: $primary-purple;
 									font-size: 14px;
 									font-weight: 400;
+									padding: 12px 20px;
 								}
 								td.day.active {
 									background: $primary-aqua;
