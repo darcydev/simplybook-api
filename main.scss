@@ -179,7 +179,7 @@ $dark-grey: #808a9c;
 	}
 
 	#client {
-		// display: none;
+		display: none;
 
 		.client-details-wrp {
 			display: flex;
@@ -257,6 +257,21 @@ $dark-grey: #808a9c;
 					font-size: 20px;
 				}
 			}
+		}
+		button {
+			background: $primary-aqua;
+			padding: 8px 35px;
+			border: none;
+			outline: none;
+			color: #fff;
+			text-transform: uppercase;
+			border-radius: 4px;
+			font-weight: 300;
+			font-size: 20px;
+			margin-top: 25px;
+		}
+		button:hover {
+			color: $primary-purple;
 		}
 	}
 }
