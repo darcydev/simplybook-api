@@ -86,6 +86,7 @@ $dark-grey: #808a9c;
 									background: $primary-aqua;
 									font-weight: 300;
 									border-radius: 0px;
+									border: 1px solid $dark-grey;
 								}
 							}
 						}
@@ -94,7 +95,7 @@ $dark-grey: #808a9c;
 							tr {
 								td {
 									border-radius: 0px !important;
-									border: 1px solid #000;
+									border: 1px solid $dark-grey;
 								}
 								td.day {
 									background: #fff;
@@ -108,8 +109,13 @@ $dark-grey: #808a9c;
 								}
 								td.disabled,
 								td.old {
-									background: $grey;
 									color: $dark-grey;
+								}
+								td.disabled {
+									background: $grey;
+								}
+								td.old {
+									background: $primary-purple;
 								}
 								td.day.active {
 									border: 1px solid #000;

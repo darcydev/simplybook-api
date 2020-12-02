@@ -91,11 +91,12 @@
   background: #36c0c8;
   font-weight: 300;
   border-radius: 0px;
+  border: 1px solid #808a9c;
 }
 
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td {
   border-radius: 0px !important;
-  border: 1px solid #000;
+  border: 1px solid #808a9c;
 }
 
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td.day {
@@ -112,8 +113,15 @@
 
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td.disabled,
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td.old {
-  background: #e6e8eb;
   color: #808a9c;
+}
+
+.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td.disabled {
+  background: #e6e8eb;
+}
+
+.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td.old {
+  background: #2a2d4e;
 }
 
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table tbody tr td.day.active {
