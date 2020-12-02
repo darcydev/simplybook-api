@@ -294,8 +294,6 @@ jQuery(document).ready(function () {
 				this.eventId,
 				this.unitId,
 				function (res) {
-					console.log('res: ', res);
-
 					jQuery('#schedule').hide();
 					jQuery('#client').show();
 
@@ -306,8 +304,8 @@ jQuery(document).ready(function () {
 					const formattedLessonDate = dayjs(instance.date).format(
 						'dddd DD MMMM YYYY'
 					);
-					const formattedLessonStartTime = dayjs(datetime).format('hh:MMa');
-					const formattedLessonEndTime = dayjs(res).format('hh:MMa');
+					const formattedLessonStartTime = dayjs(datetime).format('hh:mma');
+					const formattedLessonEndTime = dayjs(res).format('hh:mma');
 					const formattedTime = `${formattedLessonStartTime} - ${formattedLessonEndTime}`;
 
 					jQuery('#lesson-date').text(formattedLessonDate);
