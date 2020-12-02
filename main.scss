@@ -1,147 +1,262 @@
-:root {
-	--primary-green: #36c0c8;
-	--primary-blue: #2a2d4e;
-}
+$primary-aqua: #36c0c8;
+$primary-purple: #2a2d4e;
+$grey: #e6e8eb;
+$dark-grey: #808a9c;
 
-#date {
-	.old.day,
-	.new.day {
-		visibility: hidden;
-	}
-
-	.datepicker.datepicker-inline {
-		background: #ffffff;
-		border: 1px solid #cccccc;
-	}
-}
-
-#time {
-	background: #ffffff;
-	border: 1px solid #cccccc;
-	border-radius: 4px;
-	padding-bottom: 5px;
-	padding-top: 5px;
-
-	.time-item {
-		margin-bottom: 3px;
-		margin-top: 3px;
-
-		&.active {
-			font-weight: bold;
-		}
-
-		&:hover {
-			cursor: pointer;
-			text-decoration: underline;
-		}
-	}
-}
-
-#client {
-	display: none;
-}
-
-.select-facilitator-wrp {
-	display: flex;
-	align-items: center;
-	margin: 0 0 50px 0;
+.lesson-booking-form-wrp {
+	background: $primary-purple;
+	padding: 40px;
 
 	label {
 		text-transform: uppercase;
-		color: var(--primary-green);
+		color: $primary-aqua;
 		margin-right: 40px;
-		font-size: 16px;
+		font-size: 18px;
+		font-weight: 300;
 	}
 
-	select {
-		color: #fff;
-		background: var(--primary-green);
-		border-radius: 5px;
-		padding: 5px 10px;
-		width: 300px;
-		max-width: 80%;
-		font-size: 16px;
-	}
-}
+	#schedule {
+		.select-facilitator-wrp {
+			display: flex;
+			align-items: center;
+			margin: 0 0 50px 0;
+			width: 550px;
 
-.select-datetime-wrp {
-	display: flex;
-}
+			select {
+				color: #fff;
+				background: $primary-aqua;
+				border-radius: 5px;
+				padding: 5px 10px;
+				font-size: 16px;
+				font-weight: 300;
+				flex-grow: 1;
+			}
+		}
 
-.select-day-wrp {
-	margin-right: 50px;
-	width: 50%;
+		.select-datetime-wrp {
+			display: flex;
 
-	.form-heading {
-		text-transform: uppercase;
-		color: var(--primary-green);
-		margin-right: 40px;
-		font-size: 20px;
-	}
-}
+			.select-day-wrp {
+				margin-right: 50px;
+				width: 550px;
 
-/* CALENDAR */
+				.form-heading {
+					margin-right: 40px;
+				}
 
-.select-day-wrp {
-	.datepicker {
-		width: 100%;
-		border: none !important;
+				.datepicker {
+					width: 100%;
+					border: none !important;
 
-		table {
-			width: 100%;
+					table {
+						width: 100%;
 
-			thead {
-				tr {
-					th.datepicker-switch {
-						text-align: right;
-						text-transform: uppercase;
-						color: var(--primary-green);
-						font-size: 22px;
+						thead {
+							tr {
+								th.datepicker-switch {
+									text-transform: uppercase;
+									color: $primary-aqua;
+									font-size: 18px;
+									font-weight: 300;
+
+									&:hover {
+										background: inherit;
+									}
+								}
+
+								th.dow {
+									color: #fff;
+									background: $primary-aqua;
+									font-weight: 400;
+									border-radius: 0px;
+								}
+
+								th.prev,
+								th.next {
+									background: $primary-aqua;
+								}
+							}
+						}
+
+						tbody {
+							tr {
+								td {
+									border-radius: 0px !important;
+									border: 1px solid #000;
+								}
+								td.day {
+									background: #fff;
+									color: $primary-purple;
+									font-size: 14px;
+									font-weight: 400;
+								}
+								td.day.active {
+									background: $primary-aqua;
+								}
+								td.disabled,
+								td.old {
+									background: $grey;
+									color: $dark-grey;
+								}
+								td.day.active {
+									border: 1px solid #000;
+								}
+							}
+						}
 					}
+				}
 
-					th.dow {
-						color: #fff;
-						background: var(--primary-green);
-						font-weight: 400;
-						border-radius: 0px;
+				.calendar-legend-wrp {
+					margin-top: 20px;
+					display: flex;
+					align-items: center;
+					color: #fff;
+					text-transform: uppercase;
+					font-size: 14px;
+					font-weight: 300;
+
+					.legend-key {
+						margin-right: 10px;
+						background: #fff;
+						border-radius: 3px;
+						width: 20px;
+						height: 20px;
 					}
 				}
 			}
 
-			tbody {
-				tr {
-					td {
-						border-radius: 0px !important;
-						border: 1px solid #000;
-					}
+			.select-time-wrp {
+				width: 50%;
 
-					td.day {
-						background: var(--primary-green);
+				.form-heading {
+					border-bottom: 1px solid $primary-aqua;
+					width: 100%;
+				}
+				#time {
+					border: none;
+					display: flex;
+					flex-direction: column;
+					flex-wrap: wrap;
+					max-height: 260px;
+					max-width: 500px;
+
+					.time-item {
+						color: #fff;
+						border: 1px solid $primary-aqua;
+						border-radius: 4px;
+						padding: 8px 16px;
+						font-size: 16px;
+						margin: 5px 0;
+						max-width: 125px;
+						cursor: pointer;
+
+						&:hover {
+							background: $primary-aqua;
+						}
+
+						&.active {
+							background: $primary-aqua;
+						}
 					}
-					td.disabled,
-					td.old {
-						background: #fff;
-					}
-					td.day.active {
-						color: var(--primary-blue) !important;
-						border: 1px solid #000;
-					}
+				}
+				button {
+					background: $primary-aqua;
+					padding: 8px 35px;
+					border: none;
+					outline: none;
+					color: #fff;
+					text-transform: uppercase;
+					border-radius: 4px;
+					font-weight: 300;
+					font-size: 20px;
+					margin-top: 25px;
+				}
+				button:hover {
+					color: $primary-purple;
 				}
 			}
 		}
 	}
-}
 
-.select-time-wrp {
-	width: 50%;
+	#client {
+		// display: none;
 
-	.form-heading {
-		border-bottom: 2px solid var(--primary-green);
-		text-transform: uppercase;
-		color: var(--primary-green);
-		font-size: 20px;
-	}
-	#time {
-		border: none;
+		.client-details-wrp {
+			display: flex;
+
+			.user-details-wrp {
+				display: flex;
+				flex-direction: column;
+				border: 1px solid $primary-aqua;
+				border-radius: 4px;
+				padding: 20px 40px;
+				width: 450px;
+				margin-right: 40px;
+
+				.form-item {
+					display: flex;
+					flex-direction: column;
+					margin: 6px 0;
+
+					label {
+						font-size: 13px;
+						margin-bottom: 2px;
+					}
+
+					input {
+						border: none;
+						outline: none;
+						border-radius: 3px;
+						height: 40px;
+						padding-left: 10px;
+						font-size: 16px;
+					}
+				}
+			}
+
+			.lesson-details-wrp {
+				background: $primary-aqua;
+				border-radius: 4px;
+				padding: 20px 40px;
+				width: 450px;
+
+				p.heading {
+					color: #fff;
+					text-transform: uppercase;
+					font-size: 14px;
+					font-weight: 300;
+					margin-bottom: 25px;
+
+					&:after {
+						content: '';
+						display: block;
+						width: 60px;
+						padding-top: 20px;
+						border-bottom: 1px solid #fff;
+					}
+				}
+
+				p.professor,
+				p.date,
+				p.time {
+					color: $primary-purple;
+					text-transform: uppercase;
+					font-weight: 400;
+					margin: 0;
+				}
+
+				p.professor {
+					font-size: 18px;
+				}
+
+				p.date {
+					font-size: 22px;
+				}
+
+				p.time {
+					font-size: 20px;
+				}
+			}
+		}
 	}
 }

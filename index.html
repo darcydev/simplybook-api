@@ -18,71 +18,67 @@
 	</head>
 
 	<body>
-		<div>
-			<div>
-				<form role="form" class="lesson-booking-form-wrp">
-					<div id="schedule">
-						<div class="select-facilitator-wrp">
-							<label for="unit_id">Select a facilitator</label>
-							<select id="unit_id">
-								<option>PLEASE SELECT ONE</option>
-							</select>
-						</div>
-						<div class="select-datetime-wrp">
-							<div class="select-day-wrp">
-								<label for="date" class="form-heading">Select a day</label>
-								<div id="date"></div>
-							</div>
-							<div class="select-time-wrp">
-								<label for="unit_id" class="form-heading"
-									>Select an available time</label
-								>
-								<div id="time"></div>
-							</div>
-						</div>
-						<div>
-							<button type="button" id="book">Book</button>
+		<form role="form" class="lesson-booking-form-wrp">
+			<div id="schedule">
+				<div class="select-facilitator-wrp">
+					<label for="unit_id">Facilitator</label>
+					<select id="unit_id">
+						<option>PLEASE SELECT ONE</option>
+					</select>
+				</div>
+				<div class="select-datetime-wrp">
+					<div class="select-day-wrp">
+						<label for="date" class="form-heading">Select a day</label>
+						<div id="date"></div>
+						<div class="calendar-legend-wrp">
+							<div class="legend-key"></div>
+							<div class="legend-value">Available days</div>
 						</div>
 					</div>
-					<div id="client">
-						<div>
-							<dl>
-								<dt>Service performer</dt>
-								<dd id="unit_name"></dd>
-							</dl>
-							<dl>
-								<dt>Selected date and time</dt>
-								<dd>
-									<span id="date_start"></span> -
-									<span id="date_end"></span>
-								</dd>
-							</dl>
-						</div>
 
-						<div>
-							<label for="name">Student name</label>
-							<input type="name" id="name" placeholder="Student name" />
-						</div>
-						<div>
-							<label for="email">Email</label>
-							<div>
-								<input type="email" id="email" placeholder="Email" />
-							</div>
-						</div>
-						<div>
-							<label for="phone">Phone</label>
-							<div>
-								<input type="phone" id="phone" placeholder="Phone" />
-							</div>
-						</div>
-
-						<div>
-							<button type="button" id="confirm">Confirm</button>
-						</div>
+					<div class="select-time-wrp">
+						<label for="unit_id" class="form-heading"
+							>Select an available time</label
+						>
+						<div id="time"></div>
+						<button type="button" id="book" style="display: none">
+							Book meeting
+						</button>
 					</div>
-				</form>
+				</div>
 			</div>
-		</div>
+			<div id="client">
+				<div class="client-details-wrp">
+					<div class="user-details-wrp">
+						<div class="form-item">
+							<label for="name">Full name</label>
+							<input type="name" id="name" placeholder="John Smith" />
+						</div>
+						<div class="form-item">
+							<label for="email">Email</label>
+							<input
+								type="email"
+								id="email"
+								placeholder="John@thisemail.com.au"
+							/>
+						</div>
+						<div class="form-item">
+							<label for="phone">Phone</label>
+							<input type="phone" id="phone" placeholder="0426 854 987" />
+						</div>
+					</div>
+					<div class="lesson-details-wrp">
+						<p class="heading">Meeting with</p>
+						<p class="professor" id="unit_name"></p>
+						<p class="date" id="lesson-date"></p>
+						<p class="time" id="lesson-time"></p>
+					</div>
+				</div>
+				<div>
+					<button type="button" id="confirm">Confirm</button>
+				</div>
+			</div>
+		</form>
 
 		<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
