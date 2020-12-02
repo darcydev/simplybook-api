@@ -1,0 +1,408 @@
+.lesson-booking-form-wrp {
+	background: #2a2d4e;
+	padding: 40px;
+}
+.lesson-booking-form-wrp label {
+	text-transform: uppercase;
+	color: #36c0c8;
+	margin-right: 40px;
+	font-size: 18px;
+	font-weight: 300;
+}
+.lesson-booking-form-wrp #schedule .select-facilitator-wrp {
+	display: flex;
+	align-items: center;
+	margin: 0 0 50px 0;
+	width: 550px;
+}
+.lesson-booking-form-wrp #schedule .select-facilitator-wrp select {
+	color: #fff;
+	background: #36c0c8;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 16px;
+	font-weight: 300;
+	flex-grow: 1;
+}
+.lesson-booking-form-wrp #schedule .select-datetime-wrp {
+	display: flex;
+}
+.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp {
+	margin-right: 50px;
+	width: 550px;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.form-heading {
+	margin-right: 40px;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker {
+	width: 100%;
+	border: none !important;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table {
+	width: 100%;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	thead
+	tr
+	th.datepicker-switch {
+	text-transform: uppercase;
+	color: #36c0c8;
+	font-size: 18px;
+	font-weight: 300;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	thead
+	tr
+	th.datepicker-switch:hover {
+	background: inherit;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	thead
+	tr
+	th.dow {
+	color: #fff;
+	background: #36c0c8;
+	font-weight: 400;
+	border-radius: 0px;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	thead
+	tr
+	th.prev,
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	thead
+	tr
+	th.next {
+	background: #36c0c8;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	tbody
+	tr
+	td {
+	border-radius: 0px !important;
+	border: 1px solid #000;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	tbody
+	tr
+	td.day {
+	background: #fff;
+	color: #2a2d4e;
+	font-size: 14px;
+	font-weight: 400;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	tbody
+	tr
+	td.day.active {
+	background: #36c0c8;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	tbody
+	tr
+	td.disabled,
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	tbody
+	tr
+	td.old {
+	background: #e6e8eb;
+	color: #808a9c;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.datepicker
+	table
+	tbody
+	tr
+	td.day.active {
+	border: 1px solid #000;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.calendar-legend-wrp {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 300;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-day-wrp
+	.calendar-legend-wrp
+	.legend-key {
+	margin-right: 10px;
+	background: #fff;
+	border-radius: 3px;
+	width: 20px;
+	height: 20px;
+}
+.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-time-wrp {
+	width: 50%;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-time-wrp
+	.form-heading {
+	border-bottom: 1px solid #36c0c8;
+	width: 100%;
+}
+.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-time-wrp #time {
+	border: none;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	max-height: 260px;
+	max-width: 500px;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-time-wrp
+	#time
+	.time-item {
+	color: #fff;
+	border: 1px solid #36c0c8;
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 16px;
+	margin: 5px 0;
+	max-width: 125px;
+	cursor: pointer;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-time-wrp
+	#time
+	.time-item:hover {
+	background: #36c0c8;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-time-wrp
+	#time
+	.time-item.active {
+	background: #36c0c8;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-time-wrp
+	button {
+	background: #36c0c8;
+	padding: 8px 35px;
+	border: none;
+	outline: none;
+	color: #fff;
+	text-transform: uppercase;
+	border-radius: 4px;
+	font-weight: 300;
+	font-size: 20px;
+	margin-top: 25px;
+}
+.lesson-booking-form-wrp
+	#schedule
+	.select-datetime-wrp
+	.select-time-wrp
+	button:hover {
+	color: #2a2d4e;
+}
+.lesson-booking-form-wrp #client {
+	display: none;
+}
+.lesson-booking-form-wrp #client .client-details-wrp {
+	display: flex;
+}
+.lesson-booking-form-wrp #client .client-details-wrp .user-details-wrp {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #36c0c8;
+	border-radius: 4px;
+	padding: 20px 40px;
+	width: 450px;
+	margin-right: 40px;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.user-details-wrp
+	.form-item {
+	display: flex;
+	flex-direction: column;
+	margin: 6px 0;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.user-details-wrp
+	.form-item
+	label {
+	font-size: 13px;
+	margin-bottom: 2px;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.user-details-wrp
+	.form-item
+	input {
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	height: 40px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+.lesson-booking-form-wrp #client .client-details-wrp .lesson-details-wrp {
+	background: #36c0c8;
+	border-radius: 4px;
+	padding: 20px 40px;
+	width: 450px;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.heading {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 300;
+	margin-bottom: 25px;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.heading:after {
+	content: '';
+	display: block;
+	width: 60px;
+	padding-top: 20px;
+	border-bottom: 1px solid #fff;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.professor,
+.lesson-booking-form-wrp #client .client-details-wrp .lesson-details-wrp p.date,
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.time {
+	color: #2a2d4e;
+	text-transform: uppercase;
+	font-weight: 400;
+	margin: 0;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.professor {
+	font-size: 18px;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.date {
+	font-size: 22px;
+}
+.lesson-booking-form-wrp
+	#client
+	.client-details-wrp
+	.lesson-details-wrp
+	p.time {
+	font-size: 20px;
+}
+.lesson-booking-form-wrp #client button {
+	background: #36c0c8;
+	padding: 8px 35px;
+	border: none;
+	outline: none;
+	color: #fff;
+	text-transform: uppercase;
+	border-radius: 4px;
+	font-weight: 300;
+	font-size: 20px;
+	margin-top: 25px;
+}
+.lesson-booking-form-wrp #client button:hover {
+	color: #2a2d4e;
+}
