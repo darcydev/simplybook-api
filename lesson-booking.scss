@@ -120,9 +120,6 @@ $dark-grey: #808a9c;
 								td.old {
 									background: $primary-purple;
 								}
-								td.day.active {
-									border: 1px solid #000;
-								}
 							}
 						}
 					}
@@ -324,6 +321,21 @@ $dark-grey: #808a9c;
 				}
 
 				.select-time-wrp {
+					width: 90%;
+				}
+			}
+		}
+
+		#client {
+			.client-details-wrp {
+				flex-direction: column;
+
+				.user-details-wrp {
+					margin: 20px 0;
+					width: 90%;
+				}
+
+				.lesson-details-wrp {
 					width: 90%;
 				}
 			}
