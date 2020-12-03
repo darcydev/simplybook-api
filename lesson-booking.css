@@ -325,27 +325,32 @@
 }
 
 @media (max-width: 800px) {
-  #schedule .select-facilitator-wrp {
+  .lesson-booking-form-wrp #schedule .select-facilitator-wrp {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    max-width: 90%;
   }
-  #schedule .select-facilitator-wrp label {
+  .lesson-booking-form-wrp #schedule .select-facilitator-wrp label {
     margin: 0 auto 10px 0;
   }
-  #schedule .select-facilitator-wrp select {
+  .lesson-booking-form-wrp #schedule .select-facilitator-wrp select {
     margin: 0 auto 0 0;
     width: 100%;
   }
-  #schedule .select-datetime-wrp {
+  .lesson-booking-form-wrp #schedule .select-datetime-wrp {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  #schedule .select-datetime-wrp .select-day-wrp {
+  .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp {
     margin: 0 0 30px 0;
+    max-width: 90%;
+  }
+  .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-time-wrp {
+    width: 90%;
   }
 }
 /*# sourceMappingURL=lesson-booking.css.map */

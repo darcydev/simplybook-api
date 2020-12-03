@@ -299,25 +299,33 @@ $dark-grey: #808a9c;
 }
 
 @media (max-width: 800px) {
-	#schedule {
-		.select-facilitator-wrp {
-			flex-direction: column;
+	.lesson-booking-form-wrp {
+		#schedule {
+			.select-facilitator-wrp {
+				flex-direction: column;
+				max-width: 90%;
 
-			label {
-				margin: 0 auto 10px 0;
+				label {
+					margin: 0 auto 10px 0;
+				}
+
+				select {
+					margin: 0 auto 0 0;
+					width: 100%;
+				}
 			}
 
-			select {
-				margin: 0 auto 0 0;
-				width: 100%;
-			}
-		}
+			.select-datetime-wrp {
+				flex-direction: column;
 
-		.select-datetime-wrp {
-			flex-direction: column;
+				.select-day-wrp {
+					margin: 0 0 30px 0;
+					max-width: 90%;
+				}
 
-			.select-day-wrp {
-				margin: 0 0 30px 0;
+				.select-time-wrp {
+					width: 90%;
+				}
 			}
 		}
 	}
