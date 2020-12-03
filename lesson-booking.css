@@ -20,6 +20,7 @@
           align-items: center;
   margin: 0 0 50px 0;
   width: 550px;
+  max-width: 50%;
 }
 
 .lesson-booking-form-wrp #schedule .select-facilitator-wrp select {
@@ -43,10 +44,11 @@
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp {
   margin-right: 50px;
   width: 550px;
+  max-width: 50%;
 }
 
-.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .form-heading {
-  margin-right: 40px;
+.lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp #date {
+  margin-top: 10px;
 }
 
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker {
@@ -74,8 +76,9 @@
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table thead tr th.next {
   background-color: #36c0c8;
   background-repeat: no-repeat;
-  background-size: 10px;
+  background-size: 12px;
   background-position: center center;
+  border-radius: 10px;
 }
 
 .lesson-booking-form-wrp #schedule .select-datetime-wrp .select-day-wrp .datepicker table thead tr th.prev {
@@ -319,5 +322,30 @@
 
 .lesson-booking-form-wrp #client button:hover {
   color: #2a2d4e;
+}
+
+@media (max-width: 800px) {
+  #schedule .select-facilitator-wrp {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #schedule .select-facilitator-wrp label {
+    margin: 0 auto 10px 0;
+  }
+  #schedule .select-facilitator-wrp select {
+    margin: 0 auto 0 0;
+    width: 100%;
+  }
+  #schedule .select-datetime-wrp {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #schedule .select-datetime-wrp .select-day-wrp {
+    margin: 0 0 30px 0;
+  }
 }
 /*# sourceMappingURL=lesson-booking.css.map */

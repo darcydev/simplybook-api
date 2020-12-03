@@ -21,6 +21,7 @@ $dark-grey: #808a9c;
 			align-items: center;
 			margin: 0 0 50px 0;
 			width: 550px;
+			max-width: 50%;
 
 			select {
 				color: #fff;
@@ -39,9 +40,10 @@ $dark-grey: #808a9c;
 			.select-day-wrp {
 				margin-right: 50px;
 				width: 550px;
+				max-width: 50%;
 
-				.form-heading {
-					margin-right: 40px;
+				#date {
+					margin-top: 10px;
 				}
 
 				.datepicker {
@@ -69,8 +71,9 @@ $dark-grey: #808a9c;
 								th.next {
 									background-color: $primary-aqua;
 									background-repeat: no-repeat;
-									background-size: 10px;
+									background-size: 12px;
 									background-position: center center;
+									border-radius: 10px;
 								}
 
 								th.prev {
@@ -291,6 +294,31 @@ $dark-grey: #808a9c;
 		}
 		button:hover {
 			color: $primary-purple;
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	#schedule {
+		.select-facilitator-wrp {
+			flex-direction: column;
+
+			label {
+				margin: 0 auto 10px 0;
+			}
+
+			select {
+				margin: 0 auto 0 0;
+				width: 100%;
+			}
+		}
+
+		.select-datetime-wrp {
+			flex-direction: column;
+
+			.select-day-wrp {
+				margin: 0 0 30px 0;
+			}
 		}
 	}
 }
